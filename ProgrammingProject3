@@ -1,0 +1,27 @@
+Programming Project #3 LC-3 Assembly Programming
+
+.orig x3000
+
+; PROMPTING
+            LEA R0, PROMPT_STRING
+            PUTS
+
+            LEA R1, BINARYSTRING ; saves the address of the binary string
+
+            InputLoop
+                         GETC
+                         OUT
+                         ADD R3, R0, x0 ; Copy value to R3
+                         LD R6, DIFF ; Load ASCII difference
+                         ADD R3,R3,R6 ; Convert
+                         STR R3, R1, #0   ;
+                         ADD R1, R1, #1  ;
+                         ADD R5, R0, #-10 ;
+                         BRZ countOneStart
+
+                         BR InputLoop
+
+
+DIFF .fill #-48
+PROMPT_STRING .STRINGZ "Enter a binary string up to 19 digits: "
+BINARYSTRING .blkw #20 ; declares empty space to store the string
